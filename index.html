@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Cliques Automático</title>
+    <style>
+        #click-area {
+            width: 300px;
+            height: 200px;
+            background-color: lightblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            margin: 50px auto;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div id="click-area">
+    <a id="go" href="https://www.cpmrevenuegate.com/bne1jxpvh?key=1baf2c93b813c4fef29db10281ef8181" target="_blank">👋🏼 🌍</a>
+</div>
+
+<script>
+    // Função que simula um clique em um elemento
+    function simulateClick(element) {
+        const event = new MouseEvent('click', {
+            view: window,
+            bubbles: true,
+            cancelable: true
+        });
+        element.dispatchEvent(event);
+    }
+
+    // Função para automatizar os cliques
+    function startClicking() {
+        const link = document.getElementById('go');
+
+        // Define o intervalo de tempo entre os cliques (em milissegundos)
+        const clickInterval = 4000; // 4 segundos
+        const returnInterval = 2000; // 2 segundos
+
+        // Função que executa o clique, aguarda e retorna à página original
+        function clickAndRepeat() {
+            // Abre o link em uma nova aba
+            simulateClick(link);
+
+            // Aguarda 2 segundos antes de voltar à página original e clicar novamente
+            setTimeout(() => {
+                // Força o foco de volta para a aba original
+                window.focus();
+
+                // Depois de retornar, espera o tempo definido e clica novamente
+                setTimeout(clickAndRepeat, clickInterval);
+            }, returnInterval);
+        }
+
+        // Inicia o processo de cliques automáticos
+        clickAndRepeat();
+    }
+
+    // Inicializa a função de cliques automáticos ao carregar a página
+    window.onload = function() {
+        startClicking();
+    };
+
+    // Opcional: Exibir uma mensagem quando o clique for detectado
+    document.getElementById('go').addEventListener('click', function() {
+        alert('Clique detectado!');
+    });
+
+</script>
+
+</body>
+</html>
